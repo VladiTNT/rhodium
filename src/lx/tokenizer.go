@@ -83,6 +83,8 @@ func Tokenize(r io.Reader) []Token {
 				case '<', '>', '=':
 					if bb[0] == '=' {
 						opStr.WriteByte(bb[0])
+						// Consume the peeked operator symbol
+						b, _ = rd.ReadByte()
 					}
 				}
 			}
