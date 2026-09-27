@@ -3,6 +3,7 @@ package lx
 import (
 	"bufio"
 	"io"
+	"rhodium/src/atom"
 	"strings"
 )
 
@@ -25,7 +26,7 @@ func Tokenize(r io.Reader) []Token {
 		// Parse numbers
 		if isDigit(b) {
 			var numStr strings.Builder
-			var currType ValueType = Integer
+			var currType atom.Type = atom.Integer
 
 			// While we get digits
 			for isDigit(b) {
@@ -41,7 +42,7 @@ func Tokenize(r io.Reader) []Token {
 			// we are dealing with a float
 			if b == '.' {
 				// Make the value a float
-				currType = Float
+				currType = atom.Float
 
 				// Write the dot to the value
 				numStr.WriteByte(b)
@@ -114,7 +115,7 @@ func Tokenize(r io.Reader) []Token {
 			}
 
 			// Add the string token
-			tokens = append(tokens, Token{Atom, Value{String, strStr.String()}})
+			tokens = append(tokens, Token{Atom, Value{atom.String, strStr.String()}})
 
 			// Clear the closing apostrophe
 			_, err := rd.ReadByte()

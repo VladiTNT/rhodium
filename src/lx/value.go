@@ -1,14 +1,8 @@
 package lx
 
-type ValueType int
-
-const (
-	Integer ValueType = iota
-	Float
-	String
-)
+import "rhodium/src/atom"
 
 type Value struct {
-	Type  ValueType
+	Type  atom.Type
 	Value string
 }
