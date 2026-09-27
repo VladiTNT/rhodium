@@ -32,3 +32,15 @@ func (na *NodeAtom) GetFloat() float64 {
 func (na *NodeAtom) GetString() string {
 	return na.Value
 }
+
+func (na *NodeAtom) GetValue() any {
+	switch na.Type {
+	case atom.Integer:
+		return na.GetInteger()
+	case atom.Float:
+		return na.GetFloat()
+	case atom.String:
+		return na.GetString()
+	}
+	panic("How does this even happen?")
+}
